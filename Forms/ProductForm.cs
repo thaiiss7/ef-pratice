@@ -61,9 +61,13 @@ public class ProductForm : Form
         Controls.Add(menuStrip);
         Controls.Add(table);
 
-        btAdd.Click += (o, e) =>
+        btAdd.Click += async (o, e) =>
         {
+            var insert = new NewProductForm();
+            if (insert.ShowDialog() == DialogResult.Cancel)
+                return;
             
+            await LoadData();
         };
 
         table.CellClick += async (o, e) =>

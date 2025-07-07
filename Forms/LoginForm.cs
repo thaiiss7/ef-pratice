@@ -8,6 +8,7 @@ public class LoginForm : Form
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Width = 400;
         Height = 300;
+        FormClosing += (o, e) => Application.Exit();
 
         tbUsername = new TextBox {
             Width = 200,
