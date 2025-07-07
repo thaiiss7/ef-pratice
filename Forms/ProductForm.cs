@@ -2,6 +2,7 @@ public class ProductForm : Form
 {
     int userId;
     DataGridView table;
+    ToolStripButton btAdd;
     public ProductForm(int userId)
     {
         this.userId = userId;
@@ -41,7 +42,7 @@ public class ProductForm : Form
             AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         });
 
-        var btAdd = new ToolStripButton {
+        btAdd = new ToolStripButton {
             Text = "Adicionar",
         };
 
@@ -97,7 +98,10 @@ public class ProductForm : Form
 
         table.CellDoubleClick += (o, e) =>
         {
-
+            var row = table.Rows[e.RowIndex];
+            var id = int.Parse(row.Cells[0].Value.ToString());
+            var sales = new SalesForm(userId, id);
+            sales.ShowDialog();
         };
     }
 
@@ -131,7 +135,17 @@ public class ProductForm : Form
     }
 
     async void FormLoad(object sender, EventArgs e)
-        => await LoadData();
+    {
+        btAdd.Enabled = await IsAdm(userId);
+        await LoadData();
+    }
+
+    async Task<bool> IsAdm(int userId)
+    {
+        // TODO
+
+        return true;
+    }
 
     async Task LoadData()
     {
