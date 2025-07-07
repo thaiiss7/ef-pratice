@@ -2,6 +2,19 @@ using System.ComponentModel;
 
 public class EditProductForm : Form
 {
+    async Task Save()
+    {
+        DialogResult = DialogResult.OK;
+        
+        int id = ProductId;
+        string name = Name;
+        decimal price = Price;
+
+        // TODO
+
+        Close();
+    }
+
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int ProductId
     {
@@ -50,7 +63,7 @@ public class EditProductForm : Form
             Close();
         };
 
-        btSave.Click += Save;
+        btSave.Click += async (o, e) => await Save();
         
         var layout = new FlowLayoutPanel {
             Dock = DockStyle.Fill,
@@ -98,14 +111,5 @@ public class EditProductForm : Form
         };
 
         Controls.AddRange(layout);
-    }
-
-    async void Save(object sender, EventArgs e)
-    {
-        DialogResult = DialogResult.OK;
-
-        // TODO
-
-        Close();
     }
 }

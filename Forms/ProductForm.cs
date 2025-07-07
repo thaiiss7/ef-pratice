@@ -1,5 +1,27 @@
 public class ProductForm : Form
 {
+    async Task<bool> IsAdm(int userId)
+    {
+        // TODO
+
+        return true;
+    }
+
+    async Task LoadData()
+    {
+        Clear();
+
+        // TODO
+
+        Add(1, "bico", 100);
+        Add(2, "injetor", 300);
+    }
+
+    async Task DeleteById(int id)
+    {
+        // TODO
+    }
+
     int userId;
     DataGridView table;
     ToolStripButton btAdd;
@@ -151,27 +173,5 @@ public class ProductForm : Form
         btAdd.Enabled = isAdm;
         btShowChart.Enabled = isAdm;
         await LoadData();
-    }
-
-    async Task<bool> IsAdm(int userId)
-    {
-        // TODO
-
-        return true;
-    }
-
-    async Task LoadData()
-    {
-        Clear();
-
-        // TODO
-
-        Add(1, "bico", 100);
-        Add(2, "injetor", 300);
-    }
-
-    async Task DeleteById(int id)
-    {
-        // TODO
     }
 }

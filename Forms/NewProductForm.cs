@@ -2,6 +2,14 @@ using System.ComponentModel;
 
 public class NewProductForm : Form
 {
+    async Task Insert()
+    {
+        string name = Name;
+        decimal price = Price;
+        
+        // TODO
+    }
+
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public string Name
     {
@@ -41,7 +49,12 @@ public class NewProductForm : Form
             Close();
         };
 
-        btSave.Click += Insert;
+        btSave.Click += async (o, e) =>
+        {
+            DialogResult = DialogResult.OK;
+            await Insert();
+            Close();
+        };
         
         var layout = new FlowLayoutPanel {
             Dock = DockStyle.Fill,
@@ -79,14 +92,5 @@ public class NewProductForm : Form
         };
 
         Controls.AddRange(layout);
-    }
-
-    async void Insert(object sender, EventArgs e)
-    {
-        DialogResult = DialogResult.OK;
-
-        // TODO
-
-        Close();
     }
 }

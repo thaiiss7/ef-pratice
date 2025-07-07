@@ -1,5 +1,20 @@
 public class SalesForm : Form
 {
+    async Task Buy(int productId, int userId)
+    {
+        // TODO
+    }
+
+    async Task LoadData(int productId)
+    {
+        Clear();
+
+        // TODO
+
+        Add("bico", "trevis", "07/07/2025 10:55");
+        Add("bico", "cristian", "07/07/2025 11:05");
+    }
+
     DataGridView table;
     public SalesForm(int userId, int productId)
     {
@@ -7,7 +22,8 @@ public class SalesForm : Form
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Width = 800;
         Height = 800;
-        Shown += FormLoad;
+        Shown += async (o, e) =>
+            await LoadData(productId);
 
         table = new DataGridView {
             Dock = DockStyle.Fill,
@@ -52,7 +68,7 @@ public class SalesForm : Form
         btBuy.Click += async (o, e) =>
         {
             await Buy(productId, userId);
-            await LoadData();
+            await LoadData(productId);
         };
     }
 
@@ -72,23 +88,5 @@ public class SalesForm : Form
             Value = data
         });
         table.Rows.Add(row);
-    }
-
-    async void FormLoad(object sender, EventArgs e)
-        => await LoadData();
-
-    async Task Buy(int productId, int userId)
-    {
-        // TODO
-    }
-
-    async Task LoadData()
-    {
-        Clear();
-
-        // TODO
-
-        Add("bico", "trevis", "07/07/2025 10:55");
-        Add("bico", "cristian", "07/07/2025 11:05");
     }
 }

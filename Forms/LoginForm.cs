@@ -1,5 +1,18 @@
 public class LoginForm : Form
 {
+    async Task OnClick()
+    {
+        var username = tbUsername.Text;
+        var password = tbPassword.Text;
+
+        // TODO
+
+        var userId = -1;
+        var productForm = new ProductForm(userId);
+        productForm.Show();
+        Hide();
+    }
+
     TextBox tbUsername;
     TextBox tbPassword;
     public LoginForm()
@@ -25,7 +38,7 @@ public class LoginForm : Form
             Text = "Logar"
         };
 
-        btLogin.Click += OnClick;
+        btLogin.Click += async (o, e) => await OnClick();
 
         Controls.Add(new FlowLayoutPanel {
             Dock = DockStyle.Fill,
@@ -61,17 +74,5 @@ public class LoginForm : Form
                 }
             }
         });
-    }
-    async void OnClick(object sender, EventArgs e)
-    {
-        var username = tbUsername.Text;
-        var password = tbPassword.Text;
-
-        // TODO
-
-        var userId = -1;
-        var productForm = new ProductForm(userId);
-        Hide();
-        productForm.Show();
     }
 }
