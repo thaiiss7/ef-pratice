@@ -3,6 +3,7 @@ public class ProductForm : Form
     int userId;
     DataGridView table;
     ToolStripButton btAdd;
+    ToolStripButton btShowChart;
     public ProductForm(int userId)
     {
         this.userId = userId;
@@ -46,6 +47,10 @@ public class ProductForm : Form
             Text = "Adicionar",
         };
 
+        btShowChart = new ToolStripButton {
+            Text = "Ver Gráficos"
+        };
+
         var btExit = new ToolStripButton {
             Text = "Sair",
         };
@@ -56,7 +61,7 @@ public class ProductForm : Form
         };
 
         var menuStrip = new MenuStrip {
-            Items = { btAdd, btExit }
+            Items = { btAdd, btShowChart, btExit }
         };
 
         Controls.Add(menuStrip);
@@ -69,6 +74,12 @@ public class ProductForm : Form
                 return;
             
             await LoadData();
+        };
+
+        btShowChart.Click += (o, e) =>
+        {
+            var chart = new ChartForm();
+            chart.ShowDialog();
         };
 
         table.CellClick += async (o, e) =>
@@ -136,7 +147,9 @@ public class ProductForm : Form
 
     async void FormLoad(object sender, EventArgs e)
     {
-        btAdd.Enabled = await IsAdm(userId);
+        var isAdm = await IsAdm(userId);
+        btAdd.Enabled = isAdm;
+        btShowChart.Enabled = isAdm;
         await LoadData();
     }
 

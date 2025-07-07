@@ -62,7 +62,6 @@ public class LoginForm : Form
             }
         });
     }
-
     async void OnClick(object sender, EventArgs e)
     {
         var username = tbUsername.Text;
