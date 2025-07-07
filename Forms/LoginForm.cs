@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
+
 public class LoginForm : Form
 {
     async Task OnClick()
@@ -5,9 +8,23 @@ public class LoginForm : Form
         var username = tbUsername.Text;
         var password = tbPassword.Text;
 
-        // TODO
+        var database = new Database();
+        var db = await database.Create();
 
-        var userId = -1;
+        var query =
+            from u in db.UserDatas
+            where username == u.Username && password == u.Pass
+            select u;
+
+        var findUser = await query.FirstOrDefaultAsync();
+
+        if (findUser == null)
+        {
+            MessageBox.Show("Senha ou usuário inválido.");
+            return;
+        }
+
+        var userId = findUser.ID;
         var productForm = new ProductForm(userId);
         productForm.Show();
         Hide();

@@ -1,13 +1,20 @@
 using System.ComponentModel;
+using System.Data.Common;
 
+// using MyProject;
 public class NewProductForm : Form
 {
     async Task Insert()
     {
         string name = Name;
         decimal price = Price;
-        
-        // TODO
+
+        var product = new ProductItem
+        {
+            Name = name,
+            Price = price
+        };
+
     }
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

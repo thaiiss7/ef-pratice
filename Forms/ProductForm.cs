@@ -1,9 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+
 public class ProductForm : Form
 {
     async Task<bool> IsAdm(int userId)
     {
-        // TODO
+        var database = new Database();
+        var db = await database.Create();
 
+        var query =
+            from u in db.UserDatas
+            where userId == u.ID
+            select u;
+        
+        var findAdm = await query.FirstOrDefaultAsync();
+
+        if (findAdm.IsAdm == false)
+            return false;
+        
         return true;
     }
 
