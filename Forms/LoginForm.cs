@@ -1,30 +1,30 @@
 public class LoginForm : Form
 {
-    TextBox loginText;
-    TextBox passText;
-    Button loginButton;
+    TextBox tbUsername;
+    TextBox tbPassword;
     public LoginForm()
     {
+        Text = "Login";
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Width = 400;
         Height = 300;
 
-        loginText = new TextBox {
+        tbUsername = new TextBox {
             Width = 200,
             PlaceholderText = "digite seu usuário..."
         };
-        passText = new TextBox {
+        tbPassword = new TextBox {
             Width = 200,
             UseSystemPasswordChar = true,
             PlaceholderText = "digite sua senha..."
         };
 
-        loginButton = new Button {
+        var btLogin = new Button {
             Width = 80, Height = 40,
             Text = "Logar"
         };
 
-        loginButton.Click += OnClick;
+        btLogin.Click += OnClick;
 
         Controls.Add(new FlowLayoutPanel {
             Dock = DockStyle.Fill,
@@ -37,7 +37,7 @@ public class LoginForm : Form
                         new Label {
                             Text = "usuário",
                         },
-                        loginText
+                        tbUsername
                     }
                 },
                 new FlowLayoutPanel {
@@ -47,7 +47,7 @@ public class LoginForm : Form
                         new Label {
                             Text = "senha",
                         },
-                        passText
+                        tbPassword
                     }
                 },
                 new FlowLayoutPanel {
@@ -55,7 +55,7 @@ public class LoginForm : Form
                     Width = 300, Height = 60,
                     Anchor = AnchorStyles.Left | AnchorStyles.Right,
                     Controls = {
-                        loginButton
+                        btLogin
                     }
                 }
             }
@@ -64,6 +64,14 @@ public class LoginForm : Form
 
     async void OnClick(object sender, EventArgs e)
     {
+        var username = tbUsername.Text;
+        var password = tbPassword.Text;
 
+        // TODO
+
+        var userId = -1;
+        var productForm = new ProductForm(userId);
+        Hide();
+        productForm.Show();
     }
 }
