@@ -7,17 +7,11 @@ public class ProductForm : Form
         var database = new Database();
         var db = await database.Create();
 
-        var query =
-            from u in db.UserDatas
-            where userId == u.ID
-            select u;
-        
-        var findAdm = await query.FirstOrDefaultAsync();
-
-        if (findAdm.IsAdm == false)
+        var findAdm = await db.UserDatas.FindAsync(userId);
+        if (findAdm is null)
             return false;
         
-        return true;
+        return findAdm.IsAdm;
     }
 
     async Task LoadData()
