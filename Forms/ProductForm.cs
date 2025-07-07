@@ -11,7 +11,7 @@ public class ProductForm : Form
         Width = 800;
         Height = 800;
         FormClosed += (o, e) => Application.Exit();
-        Shown += LoadData;
+        Shown += FormLoad;
 
         table = new DataGridView {
             Dock = DockStyle.Fill,
@@ -63,18 +63,30 @@ public class ProductForm : Form
 
         btAdd.Click += (o, e) =>
         {
-
+            
         };
 
-        table.CellClick += (o, e) =>
+        table.CellClick += async (o, e) =>
         {
+            var row = table.Rows[e.RowIndex];
             if (e.ColumnIndex == 3)
             {
+                var edit = new EditProductForm {
+                    ProductId = int.Parse(row.Cells[0].Value.ToString()),
+                    Name = row.Cells[1].Value.ToString(),
+                    Price = decimal.Parse(row.Cells[2].Value.ToString())
+                };
+                if (edit.ShowDialog() == DialogResult.Cancel)
+                    return;
+                
+                await LoadData();
                 return;
             }
             
             if (e.ColumnIndex == 4)
             {
+                await DeleteById(int.Parse(row.Cells[0].Value.ToString()));
+                await LoadData();
                 return;
             }
         };
@@ -114,7 +126,10 @@ public class ProductForm : Form
         table.Rows.Add(row);
     }
 
-    async void LoadData(object sender, EventArgs e)
+    async void FormLoad(object sender, EventArgs e)
+        => await LoadData();
+
+    async Task LoadData()
     {
         Clear();
 
@@ -122,5 +137,10 @@ public class ProductForm : Form
 
         Add(1, "bico", 100);
         Add(2, "injetor", 300);
+    }
+
+    async Task DeleteById(int id)
+    {
+        // TODO
     }
 }
