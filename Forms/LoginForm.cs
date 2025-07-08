@@ -5,9 +5,23 @@ public class LoginForm : Form
         var username = tbUsername.Text;
         var password = tbPassword.Text;
 
-        // TODO
+        var db = await Database.CreateContext();
 
-        var userId = -1;
+        var query =
+            from u in db.UserData
+            where u.UserName == username &&
+                    u.Pass == password
+            select u;
+
+        var findedUser = await query.FirstOrDefaultAsync();
+
+        if (findedUser == null)
+        {
+            MessageBox.Show("Usuário ou senha inválidos.");
+            return;
+        }
+
+        var userId = findedUser.ID;
         var productForm = new ProductForm(userId);
         productForm.Show();
         Hide();
