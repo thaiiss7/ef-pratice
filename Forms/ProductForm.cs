@@ -2,7 +2,7 @@ public class ProductForm : Form
 {
     async Task<bool> IsAdm(int userId)
     {
-        // TODO
+        // implementar com o código feito na aula
 
         return true;
     }

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Net;
 using Microsoft.VisualBasic.ApplicationServices;
 
-/*
+//consertar código mais tarde
 public class Database
 {
     static async Task CreateContext()
@@ -56,4 +56,4 @@ public class Database
         
         return db;
     }
-}*/
+}
