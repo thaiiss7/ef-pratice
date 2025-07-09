@@ -1,18 +1,38 @@
+using Microsoft.EntityFrameworkCore;
+
 public class SalesForm : Form
 {
     async Task Buy(int productId, int userId)
     {
-        
+        var database = new Database();
+        var db = await database.Create();
+
+        var sale = new Sale
+        {
+            ProductItemID = productId,
+            UserDataID = userId,
+            BuyDate = DateTime.Now
+        };
+
+        db.Add(sale);
+        await db.SaveChangesAsync();
+
+        MessageBox.Show("Compra realizada com sucesso!");
     }
 
     async Task LoadData(int productId)
     {
         Clear();
 
-        // TODO
+        // var database = new Database();
+        // var db = await database.Create();
 
-        Add("bico", "trevis", "07/07/2025 10:55");
-        Add("bico", "cristian", "07/07/2025 11:05");
+        // var sales = await db.Sales.ToListAsync();
+        // foreach (var item in sales)
+        //     Add(item.ProductItem.Name, item.UserData.Username, item.ID);
+
+        // Add("bico", "trevis", "07/07/2025 10:55");
+        // Add("bico", "cristian", "07/07/2025 11:05");
     }
 
     DataGridView table;

@@ -23,9 +23,7 @@ public class ProductForm : Form
 
         var products = await db.ProductItems.ToListAsync();
         foreach (var item in products)
-        {
             Add(item.ID, item.Name, item.Price);
-        }
 
         // Add(1, "bico", 100);
         // Add(2, "injetor", 300);

@@ -22,8 +22,7 @@ public class NewProductForm : Form
         db.Add(product);
         await db.SaveChangesAsync();
 
-        //talvez um message box?
-
+        MessageBox.Show("Produto adicionado com sucesso!");
     }
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
