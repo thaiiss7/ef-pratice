@@ -1,9 +1,9 @@
 FORMS  
 classes que falta implementar:
 - LoadData (ChartForm)
-- LoadData (SalesForm)
 
 classes implementadas:
+- LoadData (SalesForm)
 - Buy (SalesForm)
 - Save (EditProductForm)
 - OnClick (LoginForm)
