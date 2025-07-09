@@ -8,7 +8,6 @@ public class LoginForm : Form
         var username = tbUsername.Text;
         var password = tbPassword.Text;
 
-<<<<<<< HEAD
         var database = new Database();
         var db = await database.Create();
 
@@ -26,25 +25,6 @@ public class LoginForm : Form
         }
 
         var userId = findUser.ID;
-=======
-        var db = await Database.CreateContext();
-
-        var query =
-            from u in db.UserData
-            where u.UserName == username &&
-                    u.Pass == password
-            select u;
-
-        var findedUser = await query.FirstOrDefaultAsync();
-
-        if (findedUser == null)
-        {
-            MessageBox.Show("Usuário ou senha inválidos.");
-            return;
-        }
-
-        var userId = findedUser.ID;
->>>>>>> 0de0606dd0036fe4ce87dff3f9569758e7686448
         var productForm = new ProductForm(userId);
         productForm.Show();
         Hide();
