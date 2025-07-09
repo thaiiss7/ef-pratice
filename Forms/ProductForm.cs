@@ -4,8 +4,12 @@ public class ProductForm : Form
 {
     async Task<bool> IsAdm(int userId)
     {
+<<<<<<< HEAD
         var database = new Database();
         var db = await database.Create();
+=======
+        // implementar com o código feito na aula
+>>>>>>> 0de0606dd0036fe4ce87dff3f9569758e7686448
 
         var findAdm = await db.UserDatas.FindAsync(userId);
         if (findAdm is null)
