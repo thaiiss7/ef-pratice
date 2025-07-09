@@ -2,7 +2,7 @@ public class SalesForm : Form
 {
     async Task Buy(int productId, int userId)
     {
-        // TODO
+        
     }
 
     async Task LoadData(int productId)

@@ -10,8 +10,15 @@ public class EditProductForm : Form
         string name = Name;
         decimal price = Price;
 
-        // TODO
+        var database = new Database();
+        var db = await database.Create();
 
+        var product = await db.ProductItems.FindAsync(id);
+        product.Name = name;
+        product.Price = price;
+        await db.SaveChangesAsync();
+
+        MessageBox.Show("Produto alterado!");
         Close();
     }
 

@@ -17,16 +17,32 @@ public class ProductForm : Form
     async Task LoadData()
     {
         Clear();
+        
+        var database = new Database();
+        var db = await database.Create();
 
-        // TODO
+        var products = await db.ProductItems.ToListAsync();
+        foreach (var item in products)
+        {
+            Add(item.ID, item.Name, item.Price);
+        }
 
-        Add(1, "bico", 100);
-        Add(2, "injetor", 300);
+        // Add(1, "bico", 100);
+        // Add(2, "injetor", 300);
     }
 
     async Task DeleteById(int id)
     {
-        // TODO
+        var database = new Database();
+        var db = await database.Create();
+
+        var findID = await db.ProductItems.FindAsync(id);
+        if (findID is null)
+            MessageBox.Show("Produto Inválido!");
+
+        db.Remove(findID);
+        MessageBox.Show("Produto deletado!");
+        await db.SaveChangesAsync();
     }
 
     int userId;

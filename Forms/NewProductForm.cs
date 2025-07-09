@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Data.Common;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 // using MyProject;
 public class NewProductForm : Form
@@ -9,11 +10,19 @@ public class NewProductForm : Form
         string name = Name;
         decimal price = Price;
 
+        var database = new Database();
+        var db = await database.Create();
+
         var product = new ProductItem
         {
             Name = name,
             Price = price
         };
+
+        db.Add(product);
+        await db.SaveChangesAsync();
+
+        //talvez um message box?
 
     }
 
