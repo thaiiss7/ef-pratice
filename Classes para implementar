@@ -1,0 +1,21 @@
+FORMS  
+classes que falta implementar:
+- LoadData (ChartForm)
+- Buy (SalesForm)
+- LoadData (SalesForm)
+
+classes implementadas
+- Save (EditProductForm)
+- OnClick (LoginForm)
+- Insert (NewProductForm)
+- IsAdm (ProductForm)
+- LoadData (ProductForm)
+- DeletedBy (ProductForm)
+
+MODELS
+classes implementadas
+- Database
+- DbContext
+- ProductItem
+- Sale
+- UserData
