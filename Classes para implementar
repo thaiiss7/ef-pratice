@@ -4,7 +4,7 @@ classes que falta implementar:
 - Buy (SalesForm)
 - LoadData (SalesForm)
 
-classes implementadas
+classes implementadas:
 - Save (EditProductForm)
 - OnClick (LoginForm)
 - Insert (NewProductForm)
@@ -13,7 +13,7 @@ classes implementadas
 - DeletedBy (ProductForm)
 
 MODELS
-classes implementadas
+classes implementadas:
 - Database
 - DbContext
 - ProductItem
