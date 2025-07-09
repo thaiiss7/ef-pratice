@@ -24,12 +24,17 @@ public class SalesForm : Form
     {
         Clear();
 
-        // var database = new Database();
-        // var db = await database.Create();
+        var database = new Database();
+        var db = await database.Create();
 
-        // var sales = await db.Sales.ToListAsync();
-        // foreach (var item in sales)
-        //     Add(item.ProductItem.Name, item.UserData.Username, item.ID);
+        var sale = await db.Sales.ToListAsync();
+        foreach (var item in sale)
+        {
+            if (item.ProductItemID == productId)
+                Add(item.ProductItem.Name,
+                    item.UserData.Username,
+                    item.BuyDate.ToString("dd/MM/yyyy HH:mm"));
+        }
 
         // Add("bico", "trevis", "07/07/2025 10:55");
         // Add("bico", "cristian", "07/07/2025 11:05");
