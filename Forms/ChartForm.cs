@@ -1,13 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+
 public class ChartForm : Form
 {
     async Task<List<Item>> LoadData()
     {
-        // TODO
+        var database = new Database();
+        var db = await database.Create();
 
-        return [
-            new Item("bico", 2),
-            new Item("injetor", 6)
-        ];
+        // var items = await db.ProductItems
+        //     .GroupBy(p => p.Name)
+        //     .Select(g => new Item())
+
+
+        // return [
+        //     new Item("bico", 2),
+        //     new Item("injetor", 6)
+        // ];
     }
 
     public ChartForm()
